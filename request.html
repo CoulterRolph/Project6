@@ -1,27 +1,39 @@
 <!DOCTYPE html>
 <html>
-<head><title>Forms: Request Access</title></head>
-<body>
-  <h1>Request Access</h1>
-  <form action="php/req_access.php" method="post">
-    <p>First Name: <input type="text" name="firstname" /> </p>
-    <p>Last Name: <input type="text" name="lastname" /> </p>
+	<link rel="icon" href="Photos/Logo.png" type="image/png">
+	<head>
+                <title> Forms - Request Access </title>
+                <meta name="description" content="This is a form to request access to the server>
+                <meta name="robots" content="noindex nofollow" />
+                <meta http-equiv="author" content="Coulter, David, Stuart" />
+                <meta http-equiv="pargma" content="no-cache" />
+        </head>
 
-    <input type="radio" name="fac_or_student" value="faculty" /> Faculty
-    <input type="radio" name="fac_or_student" value="student" /> Student
+	<body>
+  		<h1>Request Access</h1>
+  		<form action="php/req_access.php" method="post">
+    			<p>First Name: <input type="text" name="firstname" /> </p>
+    			<p>Last Name: <input type="text" name="lastname" /> </p>
 
-    <p>I currently ... (check all that apply)</p>
-    <input type="checkbox" name="involvement" value="none" /> Have no involvement in Project <br />
-    <input type="checkbox" name="involvement" value="instructor" /> An instructor in this Project <br />
-    <input type="checkbox" name="involvement" value="instructor_other" /> An instructor in a different Project <br />
-    <input type="checkbox" name="involvement" value="student" /> A student in this Project <br />
-    <input type="checkbox" name="involvement" value="student_other" /> A student in a different Project <br />
-    <input type="checkbox" name="involvement" value="admin" /> A College Administrator <br />
-    <input type="checkbox" name="involvement" value="external" /> An external reviewer <br />
+    			<input type="radio" name="fac_or_student" value="faculty" /> Faculty
+    			<input type="radio" name="fac_or_student" value="student" /> Student
+	
+    			<p>I currently ... (check all that apply)</p>
+    			<input type="checkbox" name="involvement" value="none" /> Have no involvement in Project <br />
+    			<input type="checkbox" name="involvement" value="instructor" /> An instructor in this Project <br />
+    			<input type="checkbox" name="involvement" value="instructor_other" /> An instructor in a different Project <br />
+    			<input type="checkbox" name="involvement" value="student" /> A student in this Project <br />
+    			<input type="checkbox" name="involvement" value="student_other" /> A student in a different Project <br />
+    			<input type="checkbox" name="involvement" value="admin" /> A College Administrator <br />
+    			<input type="checkbox" name="involvement" value="external" /> An external reviewer <br />
 
-    <p>Tell us a bit about yourself</p>
-    <textarea>Other details ... </textarea><br />
-    <input type="submit" value="Submit Request" />
-  </form>
-</body>
+    			<p>Tell us a bit about yourself</p>
+    			<textarea>Other details ... </textarea><br />
+    			<input type="submit" value="Submit Request" />
+  		</form>
+	</body>
+
+	<footer>
+                <p>Copyright &copy; CSD</p>
+        </footer>
 </html>
