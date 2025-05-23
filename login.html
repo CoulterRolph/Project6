@@ -1,37 +1,44 @@
 <!DOCTYPE html>
+<!--[if lt IE 9]>
+	<script src=http://html5shiv.googlecode.com/svn/trunk/html5.js></script>
+<![endif] -->
 <html>
 	<link rel="icon" href="Photos/Logo.png" type="image/png">
 	<head>
-                <title> Forms - Login </title>
-                <meta name="description" content="This is a page for users to login or request access>
-                <meta name="robots" content="noindex nofollow" />
-                <meta http-equiv="author" content="Coulter, David, Stuart" />
-                <meta http-equiv="pargma" content="no-cache" />
+        <title> Forms - Login </title>
+        <meta name="description" content="This is a page for users to login or request access>
+        <meta name="robots" content="noindex nofollow" />
+        <meta http-equiv="author" content="Coulter, David, Stuart" />
+        <meta http-equiv="pargma" content="no-cache" />
 		<link href="css/project_login_style.css" type="text/css" rel="stylesheet" />
-        </head>
+    </head>
 
+	<header>
+		<h1>Please log in</h1>
+	</header>
+	
 	<body>
 		<form action="php/login.php" method="post" id="login">
-			<h1>Please log in</h1>
-			<div>
-			<label for="user" class="text_label">Username:</label>
-			<input id="user" type="text" class="text_input" name="username" />
-			</div>
-			<div>
-                        <label for="pass" class="text_label">Password:</label>
-                        <input id="pass" type="password" class="text_input" name="password" required />
-                        </div>
+			<article>
+				<label for="user" class="text_label">Username:</label>
+				<input id="user" type="text" class="text_input" name="username" />
+			</article>
 
-
-			<div><input type="submit" value="Log in" id="submit"/></div>
-			
-			<div><a class="button" href="request.html">Request Access</a></div>
+			<article>
+        	    <label for="pass" class="text_label">Password:</label>
+        	    <input id="pass" type="password" class="text_input" name="password" required />
+			</article>
+		
+			<article><input type="submit" value="Log in" id="submit"/></article>
+		
+			<article><a class="button" href="request.html">Request Access</a></article>
 		</form>
+		
 		<hr />
-                <a href=index.html>Index</a>
+        <a href=index.html>Index</a>
 	</body>
 
  	<footer>
-                <p>Copyright &copy; CSD</p>
-        </footer>
+        <p>Copyright &copy; CSD</p>
+    </footer>
 </html>
