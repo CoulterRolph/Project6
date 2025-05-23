@@ -1,0 +1,46 @@
+table {
+    width: 60%;
+    border-spacing: 3px;
+    margin: 20px auto;
+    font-family: Arial, sans-serif;
+    empty-cells: hide;
+}
+
+th {
+    background-color: #fefffe;
+    color: rgb(0, 0, 0);
+    padding: 10px;
+    border: 1px solid #000000;
+}
+
+td {
+    padding: 10px;
+    border: 1px solid #000000;
+    text-align: center;
+    background-color:#6177db;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
