@@ -1,0 +1,49 @@
+.text_label
+{
+    float: left;
+    width: 100px;
+    text-align: right;
+    padding: 0px 10px 0px 0px;
+}
+
+.text_input
+{
+    width: 150px;
+    text-align: left;
+    padding: 0px 0px 0px 10px;
+}
+
+div{
+    padding: 10px 0px 10px 0px;
+    width: 274px;
+}
+
+a.button:link
+{    
+    text-align: center;
+    align-items: center;  
+    color: blanchedalmond;
+
+    padding: 15px 10px 15px 10px;
+    background-image: url("../images/blueButton.png");
+    background-size: 175px 70px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    background-position: center center;
+
+ 
+}
+
+a.button:hover
+{
+    background-image: url("../images/pinkButton.png");
+}
+a.button:visited
+{
+    color: blanchedalmond;
+}
+a.button:active
+{
+    background-image: url("../images/redButton.png");
+}
+
