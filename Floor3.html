@@ -45,7 +45,7 @@
 
 					<nav class="mb-4 border-bottom pb-2">
 						<ul class="nav">
-						  <li class="nav-item"><a class="nav-link active" href="Outside.html">Outside</a></li>
+						  <li class="nav-item"><a class="nav-link active" href="Inside.html">Inside</a></li>
 						  <li class="nav-item"><a class="nav-link" href="Floor1.html">Floor 1</a></li>
 						  <li class="nav-item"><a class="nav-link" href="Floor2.html">Floor 2</a></li>
 						  <li class="nav-item"><a class="nav-link" href="Floor3.html">Floor 3</a></li>
@@ -61,8 +61,45 @@
 					</article>
 
 					<section>
+						<section class="text-center">
+   							<h2 class="mb-4">Floor 3: Request Panel</h2>
 
-					</section>
+  							<div class="mb-4">
+  						    	<h4>Current Floor: <span class="badge bg-secondary" id="current-floor">1</span></h4>
+							</div>
+
+  							<div class="d-flex justify-content-center gap-4">
+       							<div class="btn-group-vertical">
+
+      					    <button class="btn btn-outline-secondary" onclick="callElevator('up')">
+     				      	  ↑ Up
+      					    </button>
+
+      					    <button class="btn btn-outline-primary" onclick="callElevator('down')">
+       				     	   ↓ Down
+      					    </button>
+							
+    						</div>
+ 							</div>
+
+							<div class="card my-4 mx-auto" style="max-width: 400px;">
+ 				 				<div class="card-header bg-primary text-white">
+    								<strong>Elevator Info</strong>
+  								</div>
+  							<div class="card-body">
+    						<p class="card-text">Info such as a timer display</p>
+    						<p class="card-text">Height of the elevator</p>
+    						<p class="card-text">something else lol</p>
+  							</div>
+							</div>
+
+							<div class="p-3 mb-4 border rounded shadow-sm bg-light text-start" style="max-width: 400px; margin: auto;">
+  								<h5>System Message</h5>
+  								<p>We can put whatever other info here (error messages or whatever) </p>
+							</div>
+
+ 							<div class="mt-4" id="call-status" style="min-height: 1.5em;"></div>
+							</section>
 				</section>
 			</div>
 		</div>

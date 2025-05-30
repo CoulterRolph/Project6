@@ -3,7 +3,7 @@ var year = today.getFullYear();
 
 var C_birthdate = new Date('Dec 3, 2004 14:30:00');
 var S_birthdate = new Date('July 24, 1998 19:30:00');
-var D_birthdate = new Date('May 16, 1978 15:30:00');
+var D_birthdate = new Date('July 1, 2004 20:00:00');
 
 var C_age = Math.floor((today.getTime() - C_birthdate.getTime()) / 31556900000);
 var S_age = Math.floor((today.getTime() - S_birthdate.getTime()) / 31556900000);

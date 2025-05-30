@@ -45,7 +45,7 @@
 
 					<nav class="mb-4 border-bottom pb-2">
 						<ul class="nav">
-						  <li class="nav-item"><a class="nav-link active" href="Outside.html">Outside</a></li>
+						  <li class="nav-item"><a class="nav-link active" href="Inside.html">Inside</a></li>
 						  <li class="nav-item"><a class="nav-link" href="Floor1.html">Floor 1</a></li>
 						  <li class="nav-item"><a class="nav-link" href="Floor2.html">Floor 2</a></li>
 						  <li class="nav-item"><a class="nav-link" href="Floor3.html">Floor 3</a></li>
@@ -62,7 +62,7 @@
 
 					<section>
 						<section class="text-center">
-   							<h2 class="mb-4">Elevator Outside Panel</h2>
+   							<h2 class="mb-4">Elevator Control Panel</h2>
 
   							<div class="mb-4">
   						    	<h4>Current Floor: <span class="badge bg-secondary" id="current-floor">1</span></h4>
@@ -71,12 +71,16 @@
   							<div class="d-flex justify-content-center gap-4">
        							<div class="btn-group-vertical">
 
-      					    <button class="btn btn-outline-primary" onclick="callElevator('up')">
-     				      	  ↑ Up
+      					    <button class="btn btn-outline-primary" onclick="callElevator('Floor3')">
+     				      	   Floor 3
       					    </button>
 
-      					    <button class="btn btn-outline-secondary" onclick="callElevator('down')">
-       				     	   ↓ Down
+      					    <button class="btn btn-outline-primary" onclick="callElevator('Floor2')">
+       				     	   Floor 2
+      					    </button>
+
+							<button class="btn btn-outline-primary" onclick="callElevator('Floor1')">
+       				     	   Floor 1
       					    </button>
 							
     						</div>
