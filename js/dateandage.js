@@ -14,7 +14,9 @@ var S_msg = '<p>' + S_age + ' years old</p>';
 var D_msg = '<p>' + D_age + ' years old</p>';
 var year_msg = '<p>Copyright &copy ' + year + '</p>';
 
-document.getElementById('year_msg').innerHTML = year_msg;
+document.addEventListener("DOMContentLoaded", function() {
+  document.getElementById("year_msg").textContent = new Date().getFullYear();
+});
 document.getElementById('C_age').innerHTML = C_msg;
 document.getElementById('S_age').innerHTML = S_msg;
 document.getElementById('D_age').innerHTML = D_msg;

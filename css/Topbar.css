@@ -1,12 +1,16 @@
-aside .nav-link {
-  color: #000;
+.topbar {
   padding: 0.5rem 1rem;
   font-size: 1.5rem;
   border-radius: 4px;
   transition: background-color 0.2s ease;
 }
 
-aside .nav-link:hover {
+.topbar:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+}
+
+.topbarcurrent {
   background-color: rgba(0, 0, 0, 0.1);
   text-decoration: none;
 }
