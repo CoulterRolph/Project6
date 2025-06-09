@@ -34,41 +34,48 @@
 
 				<article>
 					<h1>Request Access</h1>
-					<form action="php/req_access.php" method="post">
+					<form id="reqaccess" action="php/req_access.php" method="post">
 						<fieldset>
 							<legend>Contact Details</legend>
 							<div>
 								<label class="text_label">First Name:</label>
-								<input type="text_input" name="firstname" />
+								<input id="fname" type="text_input" name="firstname" />
+								<br><a id="fnameFeedback"></a>
 							</div>
 							<div>
 								<label class="text_label">Last Name: </label>
-								<input type="text_input" name="lastname" />
+								<input id="lname" type="text_input" name="lastname" />
+								<br><a id="lnameFeedback"></a>
 							</div>
 							<div>
 								<label class="text_label">Email: </label>
-								<input type="email" name="email" />
+								<input id="email" type="email" name="email" />
+								<br><a id="emailFeedback"></a>
 							</div>
 							<div>
-								<label class="text_label">Website: </label>
-								<input type="url" name="url" />
+								<label class="text_label">Website(optional): </label>
+								<input id="website" type="url" name="url" />
+								<br><a id="websiteFeedback"></a>
 							</div>
 							<div>
 								<label class="text_label">Birth date:</label>
-								<input type="date" name="birthday" />
+								<input id="birthday" type="date" name="birthday" />
+								<br><a id="birthdayFeedback"></a>
 							</div>
 							<div>
 								<label class="text_label">Request type:</label>
-								<input type="radio" name="fac_or_student" value="faculty" /> Faculty
+								<input id="faculty"type="radio" name="fac_or_student" value="faculty" /> Faculty
 								<label class="text_label"></label>
-								<input type="radio" name="fac_or_student" value="student" /> Student
+								<input id="student" type="radio" name="fac_or_student" value="student" /> Student
+								<br><a id="facultyFeedback"></a>
 							</div>
 							<div>
 								<label class="text_label">Reason for access:</label>
 									<textarea id="message" name="message" rows="10" cols="50"></textarea>
 									<p id="charactersLeft"></p>
 									<p id="lastkey"></p>
-								</div>
+							</div>
+							<div><input type="submit" value="request" id="submit" /></div>
 						</fieldset>
 					</form>
 
@@ -80,6 +87,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-
 		YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 	<script	src="js/KeyboardEvent.js"></script>
+	<script	src="js/reqEventListener.js"></script>
 </body>
 
 </html>
