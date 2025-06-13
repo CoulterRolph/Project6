@@ -1,7 +1,7 @@
 function setup() 
 {
     var textInput;
-    textInput = document.getElementById('user');
+    textInput = document.getElementById('username');
     textInput.focus();
 }
 
