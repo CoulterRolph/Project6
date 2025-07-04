@@ -1,12 +1,12 @@
 <?php
 
-$dsn = "mysql:host=localhost;dbname=elevatorNetwork";
-$dbusername = "root";
-$dbpassword = "";
+$db = new PDO (
+    'mysql:host=127.0.0.1;dbname=elevatortest',
+    'webadmin',
+    'david'
+);
 
-try {
-    $pdo = new PDO($dsn, $dbusername, $dbpassword);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
-}
+$db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+
+
+?>
