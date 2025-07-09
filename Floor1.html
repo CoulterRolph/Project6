@@ -49,9 +49,12 @@
 						<div class="p-5 border border-4 rounded-4 shadow bg-light h-100 d-flex flex-column justify-content-center"
 							style="width:346px;">
 							<div class="mb-2 text-center">
-								<button class="btn btn-outline-primary big-btn">
-									↑
-								</button>
+								<form method="POST" action="floorReq.php">
+									<input type="hidden" name="floorRequest" value="2">
+									<button type="submit" class="btn btn-outline-primary big-btn">
+										↑
+									</button>
+								</form>
 							</div>
 						</div>
 					</div>
