@@ -48,4 +48,12 @@ if (isset($_POST['floorRequest'])) {
 } else {
     echo "No floorRequest received.";
 }
+if (!empty($_SERVER['HTTP_REFERER'])) {
+    header("Location: " . $_SERVER['HTTP_REFERER']);
+    exit;
+} else {
+    // Fallback if no referer is set
+    header("Location: index.php");
+    exit;
+}
 ?>

@@ -19,6 +19,14 @@ $stmt->execute([
     ':nodeID' => $nodeID
 ]);
 
+if (!empty($_SERVER['HTTP_REFERER'])) {
+    header("Location: " . $_SERVER['HTTP_REFERER']);
+    exit;
+} else {
+    // Fallback if no referer is set
+    header("Location: index.php");
+    exit;
+}
 /*
 $query2 = 'SELECT * FROM elevatorNetwork';
 $rows = $db->query($query2);
