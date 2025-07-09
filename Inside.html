@@ -49,19 +49,22 @@
 						<div class="p-5 border border-4 rounded-4 shadow bg-light h-100 d-flex flex-column justify-content-center"
 							style="width:346px;">
 							<div class="mb-2 text-center">
-								<button class="btn btn-outline-primary med-btn">
-									3
-								</button>
+    							<form method="POST" action="floorReq.php">
+        							<input type="hidden" name="floorRequest" value="3">
+        							<button type="submit" class="btn btn-outline-primary med-btn">3</button>
+    							</form>
 							</div>
 							<div class="mb-2 text-center">
-								<button class="btn btn-outline-primary med-btn">
-									2
-								</button>
+								<form method="POST" action="floorReq.php">
+									<input type="hidden" name="floorRequest" value="2">
+									<button type="submit" class="btn btn-outline-primary med-btn">2</button>
+								</form>
 							</div>
 							<div class="text-center">
-								<button class="btn btn-outline-primary med-btn">
-									1
-								</button>
+								<form method="POST" action="floorReq.php">
+									<input type="hidden" name="floorRequest" value="1">
+									<button type="submit" class="btn btn-outline-primary med-btn">1</button>
+								</form>
 							</div>
 						</div>
 					</div>
