@@ -138,29 +138,52 @@
 	<script>
 		function pollLEDStatus() {
 			fetch('php/getLEDStates.php')
-				.then(r => r.json())
+				.then(response => response.json())
 				.then(data => {
-					for (let i = 1; i <= 3; i++) {
-						const btn = document.getElementById(`floor${i}-btn`);
-						if (!btn) continue;
-
-						const ledValue = parseInt(data[`floor${i}LED`], 10);
-
-						// If value is 2 → highlight (blue)
-						if (ledValue === 2) {
-							btn.classList.remove('btn-outline-primary');
-							btn.classList.add('btn-primary');
+					// Floor 1
+					const btn1 = document.getElementById('floor1-btn');
+					if (btn1) {
+						if (parseInt(data.floor1LED) === 2) {
+							btn1.classList.remove('btn-outline-primary');
+							btn1.classList.add('btn-primary');
 						} else {
-							btn.classList.remove('btn-primary');
-							btn.classList.add('btn-outline-primary');
+							btn1.classList.remove('btn-primary');
+							btn1.classList.add('btn-outline-primary');
+						}
+					}
+
+					// Floor 2
+					const btn2 = document.getElementById('floor2-btn');
+					if (btn2) {
+						if (parseInt(data.floor2LED) === 2) {
+							btn2.classList.remove('btn-outline-primary');
+							btn2.classList.add('btn-primary');
+						} else {
+							btn2.classList.remove('btn-primary');
+							btn2.classList.add('btn-outline-primary');
+						}
+					}
+
+					// Floor 3
+					const btn3 = document.getElementById('floor3-btn');
+					if (btn3) {
+						if (parseInt(data.floor3LED) === 2) {
+							btn3.classList.remove('btn-outline-primary');
+							btn3.classList.add('btn-primary');
+						} else {
+							btn3.classList.remove('btn-primary');
+							btn3.classList.add('btn-outline-primary');
 						}
 					}
 				})
-				.catch(err => console.error('LED poll error:', err));
+				.catch(error => {
+					console.error("LED poll error:", error);
+				});
 		}
 
-		pollLEDStatus();               // First run immediately
-		setInterval(pollLEDStatus, 3000); // Repeat every 3 seconds
+		// Initial call and interval setup
+		pollLEDStatus();
+		setInterval(pollLEDStatus, 3000);
 	</script>
 
 
