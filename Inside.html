@@ -49,7 +49,7 @@
 						<div class="p-5 border border-4 rounded-4 shadow bg-light h-100 d-flex flex-column justify-content-center"
 							style="width:346px;">
 							<div class="mb-2 text-center">
-								<button onclick="requestFloor(3)" class="btn btn-outline-primary med-btn">3</button>
+								<button id="floor3-btn" onclick="requestFloor(3)" class="btn btn-outline-primary med-btn">3</button>
 							</div>
 							<div class="mb-2 text-center">
 								<button onclick="requestFloor(2)" class="btn btn-outline-primary med-btn">2</button>
@@ -131,6 +131,37 @@
 				});
 		}
 	</script>
+
+	<script>
+		/**
+		 * Polls getLEDStates.php every 3 s and
+		 * turns the Floor‑3 button blue when floor3LED === 2.
+		 */
+		function pollLEDStatus() {
+			fetch('php/floorLEDStates.php')
+				.then(r => r.json())
+				.then(data => {
+					const btn3 = document.getElementById('floor3-btn');
+					if (!btn3) return;                    // safety
+
+					if (parseInt(data.floor3LED, 10) === 2) {
+						// Make it blue
+						btn3.classList.remove('btn-outline-primary');
+						btn3.classList.add('btn-primary');
+					} else {
+						// Revert to default (white / outline)
+						btn3.classList.remove('btn-primary');
+						btn3.classList.add('btn-outline-primary');
+					}
+				})
+				.catch(err => console.error('LED poll error:', err));
+		}
+
+		// First run immediately, then every 3 s
+		pollLEDStatus();
+		setInterval(pollLEDStatus, 3000);
+	</script>
+
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-
 		YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
