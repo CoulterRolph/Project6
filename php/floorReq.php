@@ -2,6 +2,7 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+
 // Connect to the database
 $db = new PDO(
     'mysql:host=127.0.0.1;dbname=elevatorCSD',
@@ -10,11 +11,10 @@ $db = new PDO(
 );
 $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
-// Get floorRequest from POST
 if (isset($_POST['floorRequest'])) {
     $requestedFloor = intval($_POST['floorRequest']);
 
-    // Get the current floor from the table
+    // Get current floor
     $stmt = $db->prepare("SELECT currentFloor FROM elevatorControl WHERE nodeID = 0");
     $stmt->execute();
     $row = $stmt->fetch();
@@ -22,24 +22,17 @@ if (isset($_POST['floorRequest'])) {
     if ($row) {
         $currentFloor = intval($row['currentFloor']);
 
-        // Check if requested floor is same as current
         if ($requestedFloor == $currentFloor) {
-            // Already on current floor - in the future you'd update status instead
             echo "Elevator is already on floor $currentFloor.";
-        } 
-        else {
-            $requestedFloor = intval($_POST['floorRequest']);
-
-            // Validate: only allow 1, 2, or 3
+        } else {
             if (in_array($requestedFloor, [1, 2, 3])) {
                 $column = "requestedFloor" . $requestedFloor;
-
-                // Build the SQL string with the safe column name
                 $sql = "UPDATE elevatorControl SET `$column` = 2 WHERE nodeID = 0";
                 $update = $db->prepare($sql);
                 $update->execute();
-
                 echo "Elevator floor request set for floor $requestedFloor.";
+            } else {
+                echo "Invalid floor request.";
             }
         }
     } else {
@@ -47,13 +40,5 @@ if (isset($_POST['floorRequest'])) {
     }
 } else {
     echo "No floorRequest received.";
-}
-if (!empty($_SERVER['HTTP_REFERER'])) {
-    header("Location: " . $_SERVER['HTTP_REFERER']);
-    exit;
-} else {
-    // Fallback if no referer is set
-    header("Location: index.php");
-    exit;
 }
 ?>
