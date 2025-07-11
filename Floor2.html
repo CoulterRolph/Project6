@@ -49,23 +49,14 @@
 					<div class="col-12 d-flex justify-content-center">
 						<div class="p-5 border border-4 rounded-4 shadow bg-light">
 							<div class="mb-2 text-center">
-								<form method="POST" action="php/elevatorReq.php">
-									<input type="hidden" name="nodeID" value="2">
-									<input type="hidden" name="floorRequest" value="1">
-									<button class="btn btn-outline-primary big-btn">
-										↑
-									</button>
-								</form>
+								<button onclick="sendElevatorRequest(2, 2)"
+									class="btn btn-outline-primary big-btn">↑</button>
 							</div>
-							<div class="text-center">
-								<form method="POST" action="php/elevatorReq.php">
-									<input type="hidden" name="nodeID" value="2">
-									<input type="hidden" name="floorRequest" value="2">
-									<button class="btn btn-outline-primary big-btn">
-										↓
-									</button>
-								</form>
+							<div class="mb-2 text-center">
+								<button onclick="sendElevatorRequest(2, 1)"
+									class="btn btn-outline-primary big-btn">↓</button>
 							</div>
+							
 						</div>
 					</div>
 				</article>
@@ -88,6 +79,26 @@
 				</section>
 		</div>
 	</div>
+
+	<script>
+		function sendElevatorRequest(nodeID, floorRequest) {
+			fetch('php/elevatorReq.php', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded'
+				},
+				body: 'nodeID=' + encodeURIComponent(nodeID) +
+					'&floorRequest=' + encodeURIComponent(floorRequest)
+			})
+				.then(response => response.text())
+				.then(data => {
+					alert(data); // Or display this elsewhere on the page
+				})
+				.catch(error => {
+					alert("Request failed: " + error);
+				});
+		}
+	</script>
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-
 		YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

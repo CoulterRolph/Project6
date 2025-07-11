@@ -6,34 +6,32 @@ $db = new PDO(
 );
 $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
-$nodeID = $_POST['nodeID'];
-$floorRequest = $_POST['floorRequest'];
+// Check if expected POST values are set
+if (isset($_POST['nodeID']) && isset($_POST['floorRequest'])) {
+    $nodeID = $_POST['nodeID'];
+    $floorRequest = $_POST['floorRequest'];
 
-$query = 'UPDATE floorControl
-          SET floorRequest = :floorRequest
-          WHERE nodeID = :nodeID';
+    $query = 'UPDATE floorControl
+              SET floorRequest = :floorRequest
+              WHERE nodeID = :nodeID';
 
-$stmt = $db->prepare($query);
-$stmt->execute([
-    ':floorRequest' => $floorRequest,
-    ':nodeID' => $nodeID
-]);
+    $stmt = $db->prepare($query);
+    $success = $stmt->execute([
+        ':floorRequest' => $floorRequest,
+        ':nodeID' => $nodeID
+    ]);
 
-if (!empty($_SERVER['HTTP_REFERER'])) {
-    header("Location: " . $_SERVER['HTTP_REFERER']);
-    exit;
+    if ($success) {
+        if ($floorRequest == 1){
+            echo "Request elevator going down by node $nodeID.";
+        } else {
+            echo "Request elevator going up by node $nodeID.";
+        }
+        
+    } else {
+        echo "Database update failed.";
+    }
 } else {
-    // Fallback if no referer is set
-    header("Location: index.php");
-    exit;
+    echo "Missing nodeID or floorRequest.";
 }
-/*
-$query2 = 'SELECT * FROM elevatorNetwork';
-$rows = $db->query($query2);
-foreach ($rows as $row)
-{
-    var_dump($row);
-    echo "<br /><br />";
-}
-*/
 ?>
