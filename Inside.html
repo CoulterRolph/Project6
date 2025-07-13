@@ -49,22 +49,16 @@
 						<div class="p-5 border border-4 rounded-4 shadow bg-light h-100 d-flex flex-column justify-content-center"
 							style="width:346px;">
 							<div class="mb-2 text-center">
-    							<form method="POST" action="php/floorReq.php">
-        							<input type="hidden" name="floorRequest" value="3">
-        							<button type="submit" class="btn btn-outline-primary med-btn">3</button>
-    							</form>
+								<button id="floor3-btn" onclick="requestFloor(3)"
+									class="btn btn-outline-primary med-btn">3</button>
 							</div>
 							<div class="mb-2 text-center">
-								<form method="POST" action="php/floorReq.php">
-									<input type="hidden" name="floorRequest" value="2">
-									<button type="submit" class="btn btn-outline-primary med-btn">2</button>
-								</form>
+								<button id="floor2-btn" onclick="requestFloor(2)"
+									class="btn btn-outline-primary med-btn">2</button>
 							</div>
 							<div class="text-center">
-								<form method="POST" action="php/floorReq.php">
-									<input type="hidden" name="floorRequest" value="1">
-									<button type="submit" class="btn btn-outline-primary med-btn">1</button>
-								</form>
+								<button id="floor1-btn" onclick="requestFloor(1)"
+									class="btn btn-outline-primary med-btn">1</button>
 							</div>
 						</div>
 					</div>
@@ -112,14 +106,101 @@
 				</section>
 				<section class="row justify-content-center">
 					<div class="col-5 border shadow bg-light p-3 me-5">
-						<h4> - ESE, it's in the game.</h4>
+						<h4 id="elevator-status"> - ESE, it's in the game.</h4>
 					</div>
 					<div class="col-5 border shadow bg-light p-3">
-						<h4> - Working hard or hardly working?</h4>
+						<h4 id="elevator-message"> - Working hard or hardly working?</h4>
 					</div>
 				</section>
 		</div>
 	</div>
+
+	<script>
+		function requestFloor(floor) {
+			fetch('php/floorReq.php', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded'
+				},
+				body: 'floorRequest=' + encodeURIComponent(floor)
+			})
+				.then(response => response.text())
+				.then(data => {
+					// Show the result in an alert or on the page
+					alert(data); // Replace with UI update if needed
+				})
+				.catch(error => {
+					alert("Error: " + error);
+				});
+		}
+	</script>
+
+	<script>
+		function pollLEDStatus() {
+			fetch('php/floorLEDStates.php')
+				.then(r => r.json())
+				.then(data => {
+					// Floor buttons
+					const btn1 = document.getElementById('floor1-btn');
+					if (btn1) {
+						if (parseInt(data.requestedFloor1, 10) === 2) {
+							btn1.classList.remove('btn-outline-primary');
+							btn1.classList.add('btn-primary');
+						} else {
+							btn1.classList.remove('btn-primary');
+							btn1.classList.add('btn-outline-primary');
+						}
+					}
+
+					const btn2 = document.getElementById('floor2-btn');
+					if (btn2) {
+						if (parseInt(data.requestedFloor2, 10) === 2) {
+							btn2.classList.remove('btn-outline-primary');
+							btn2.classList.add('btn-primary');
+						} else {
+							btn2.classList.remove('btn-primary');
+							btn2.classList.add('btn-outline-primary');
+						}
+					}
+
+					const btn3 = document.getElementById('floor3-btn');
+					if (btn3) {
+						if (parseInt(data.requestedFloor3, 10) === 2) {
+							btn3.classList.remove('btn-outline-primary');
+							btn3.classList.add('btn-primary');
+						} else {
+							btn3.classList.remove('btn-primary');
+							btn3.classList.add('btn-outline-primary');
+						}
+					}
+
+					// Update current floor
+					const currentFloor = document.getElementById('current-floor');
+					if (currentFloor && data.currentFloor !== undefined) {
+						currentFloor.textContent = data.currentFloor;
+					}
+
+					// Update status
+					const status = document.getElementById('elevator-status');
+					if (status && data.status !== undefined) {
+						status.textContent = data.status;
+					}
+
+					// Update message
+					const message = document.getElementById('elevator-message');
+					if (message && data.messages !== undefined) {
+						message.textContent = data.messages;
+					}
+				})
+				.catch(err => console.error('LED poll error:', err));
+		}
+
+		pollLEDStatus();
+		setInterval(pollLEDStatus, 3000);
+	</script>
+
+
+
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-
 		YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
