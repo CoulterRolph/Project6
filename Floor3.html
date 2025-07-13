@@ -34,7 +34,8 @@
 						<li class="nav-item"><a class="nav-link topbar" href="Inside.html">Inside</a></li>
 						<li class="nav-item"><a class="nav-link topbar" href="Floor1.html">Floor 1</a></li>
 						<li class="nav-item"><a class="nav-link topbar" href="Floor2.html">Floor 2</a></li>
-						<li class="nav-item"><a class="nav-link topbar topbarcurrent" href="Floor3.html">Floor 3</a></li>
+						<li class="nav-item"><a class="nav-link topbar topbarcurrent" href="Floor3.html">Floor 3</a>
+						</li>
 					</ul>
 				</nav>
 
@@ -49,7 +50,7 @@
 						<div class="p-5 border border-4 rounded-4 shadow bg-light h-100 d-flex flex-column justify-content-center"
 							style="width:346px;">
 							<div class="mb-2 text-center">
-								<button onclick="sendElevatorRequest(3, 1)"
+								<button id="floor3-btn" onclick="sendElevatorRequest(3, 1)"
 									class="btn btn-outline-primary big-btn">↓</button>
 							</div>
 						</div>
@@ -66,10 +67,11 @@
 				</section>
 				<section class="row justify-content-center">
 					<div class="col-5 border shadow bg-light p-3 me-5">
-						<h4> - ESE, it's in the game.</h4>
+						<h4 id="elevator-status"> - ESE, it's in the game.</h4>
+
 					</div>
 					<div class="col-5 border shadow bg-light p-3">
-						<h4> - Working hard or hardly working?</h4>
+						<h4 id="elevator-message"> - Working hard or hardly working?</h4>
 					</div>
 				</section>
 		</div>
@@ -93,6 +95,48 @@
 					alert("Request failed: " + error);
 				});
 		}
+	</script>
+
+	<script>
+		function pollOutsideStatus() {
+			fetch('php/floor3States.php')
+				.then(r => r.json())
+				.then(data => {
+					// Update current floor
+					const currentFloor = document.getElementById('current-floor');
+					if (currentFloor && data.currentFloor !== undefined) {
+						currentFloor.textContent = data.currentFloor;
+					}
+
+					// Update status text
+					const status = document.getElementById('elevator-status');
+					if (status && data.status !== undefined) {
+						status.textContent = data.status;
+					}
+
+					// Update message text
+					const message = document.getElementById('elevator-message');
+					if (message && data.messages !== undefined) {
+						message.textContent = data.messages;
+					}
+
+					const floor3btn = document.getElementById('floor3-btn');
+					if (floor3btn && data.floorRequest !== undefined) {
+						if (parseInt(data.floorRequest, 10) === 1) {
+							floor3btn.classList.remove('btn-outline-primary');
+							floor3btn.classList.add('btn-primary');
+						} else {
+							floor3btn.classList.remove('btn-primary');
+							floor3btn.classList.add('btn-outline-primary');
+						}
+					}
+
+				})
+				.catch(err => console.error('Outside elevator poll error:', err));
+		}
+
+		pollOutsideStatus();                  // Run immediately
+		setInterval(pollOutsideStatus, 3000); // Then every 3 s
 	</script>
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-

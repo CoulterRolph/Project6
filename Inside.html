@@ -106,10 +106,10 @@
 				</section>
 				<section class="row justify-content-center">
 					<div class="col-5 border shadow bg-light p-3 me-5">
-						<h4> - ESE, it's in the game.</h4>
+						<h4 id="elevator-status"> - ESE, it's in the game.</h4>
 					</div>
 					<div class="col-5 border shadow bg-light p-3">
-						<h4> - Working hard or hardly working?</h4>
+						<h4 id="elevator-message"> - Working hard or hardly working?</h4>
 					</div>
 				</section>
 		</div>
@@ -137,13 +137,13 @@
 
 	<script>
 		function pollLEDStatus() {
-			fetch('php/getLEDStates.php')
-				.then(response => response.json())
+			fetch('php/floorLEDStates.php')
+				.then(r => r.json())
 				.then(data => {
-					// Floor 1
+					// Floor buttons
 					const btn1 = document.getElementById('floor1-btn');
 					if (btn1) {
-						if (parseInt(data.floor1LED) === 2) {
+						if (parseInt(data.requestedFloor1, 10) === 2) {
 							btn1.classList.remove('btn-outline-primary');
 							btn1.classList.add('btn-primary');
 						} else {
@@ -152,10 +152,9 @@
 						}
 					}
 
-					// Floor 2
 					const btn2 = document.getElementById('floor2-btn');
 					if (btn2) {
-						if (parseInt(data.floor2LED) === 2) {
+						if (parseInt(data.requestedFloor2, 10) === 2) {
 							btn2.classList.remove('btn-outline-primary');
 							btn2.classList.add('btn-primary');
 						} else {
@@ -164,10 +163,9 @@
 						}
 					}
 
-					// Floor 3
 					const btn3 = document.getElementById('floor3-btn');
 					if (btn3) {
-						if (parseInt(data.floor3LED) === 2) {
+						if (parseInt(data.requestedFloor3, 10) === 2) {
 							btn3.classList.remove('btn-outline-primary');
 							btn3.classList.add('btn-primary');
 						} else {
@@ -175,16 +173,32 @@
 							btn3.classList.add('btn-outline-primary');
 						}
 					}
+
+					// Update current floor
+					const currentFloor = document.getElementById('current-floor');
+					if (currentFloor && data.currentFloor !== undefined) {
+						currentFloor.textContent = data.currentFloor;
+					}
+
+					// Update status
+					const status = document.getElementById('elevator-status');
+					if (status && data.status !== undefined) {
+						status.textContent = data.status;
+					}
+
+					// Update message
+					const message = document.getElementById('elevator-message');
+					if (message && data.messages !== undefined) {
+						message.textContent = data.messages;
+					}
 				})
-				.catch(error => {
-					console.error("LED poll error:", error);
-				});
+				.catch(err => console.error('LED poll error:', err));
 		}
 
-		// Initial call and interval setup
 		pollLEDStatus();
 		setInterval(pollLEDStatus, 3000);
 	</script>
+
 
 
 
