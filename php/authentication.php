@@ -1,24 +1,33 @@
 <?php
     session_start();
 
-    $valid_username = "admin";
-    $valid_password = "12345";
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $authenticated = false;
 
+    $db = NEW PDO('mysql:host=127.0.0.1;dbname=elevatorCSD', 'user', 'password');
+    $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
-    $username = $_POST['username'] ?? '';
-    $password = $_POST['password'] ?? '';
-
-    if($username === $valid_username && $password === $valid_password)
+    $query = "SELECT * FROM authorizedUsers WHERE username = '$username'";
+    $rows = $db->query($query);
+    foreach ($rows as $row)
     {
-        $_SESSION['authenticated'] = true;
+        echo $row['username'];
+        if($username === $row['username'] && $password === $row['password']){
+            $authenticated = true;
+        }
+    }
+
+    if($authenticated)
+    {
         $_SESSION['username'] = $username;
         //echo "<p>Sucessfully logged into site</p>";
         //echo "Please click <a href=\"member.php\">here</a> to continue to members only page.";
-        header("Location: member.php");
+        header("Location: ../inside.html");
         exit();
     } else
     {
-        header("Location: ..\login.html?error=invalid");
+        header("Location: ../login.html?error=invalid");
         exit();
     }
 ?>
