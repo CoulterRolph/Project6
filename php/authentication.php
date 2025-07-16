@@ -23,7 +23,7 @@
         $_SESSION['username'] = $username;
         //echo "<p>Sucessfully logged into site</p>";
         //echo "Please click <a href=\"member.php\">here</a> to continue to members only page.";
-        header("Location: ../inside.html");
+        header("Location: ../Inside.html");
         exit();
     } else
     {

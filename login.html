@@ -31,7 +31,7 @@
 					<ul class="nav">
 						<li class="nav-item"><a class="nav-link topbar topbarcurrent" href="login.html">Login</a></li>
 						<li class="nav-item"><a class="nav-link topbar" href="request.html">Request Access</a></li>
-
+						<li class="nav-item"><a class="nav-link topbar" href="php/logout.php">Logout</a></li>
 					</ul>
 				</nav>
 
@@ -56,8 +56,11 @@
 						<div id="error-message" style="color:red;"></div>
 						<script>
 							const params = new URLSearchParams(window.location.search);
+							const errorDiv = document.getElementById('error-message');
 							if (params.get('error') === 'invalid') {
-								document.getElementById('error-message').textContent = 'Invalid username or password.';
+								errorDiv.textContent = 'Invalid username or password.';
+							} else if (params.get('error') === 'auth') {
+								errorDiv.textContent = 'Authentication Required for GUI';
 							}
 						</script>
 						<article><input type="submit" value="Log in" id="submit" /></article>
