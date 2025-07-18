@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
+<!-- register.html -->
 
+<!-- header -->
+<link rel="icon" href="Photos/Logo.png" type="image/png">
 <head>
     <title>Register - Project VI</title>
     <meta charset="utf-8" />
@@ -11,18 +14,26 @@
     <link href="css/Topbar.css" type="text/css" rel="stylesheet" />
 </head>
 
+<!-- body -->
 <body>
+
+    <!-- Check if the user is authenticated -->
     <script>
         fetch('php/GUIAuthentication.php')
             .then(r => r.json())
             .then(data => {
+                // If not authenticated, redirect to login page with error
                 if (!data.authenticated) {
                     window.location.href = 'login.html?error=register';
                 }
             });
     </script>
+
+    <!-- Main content -->
     <div id="page" class="container-fluid">
         <div class="row min-vh-100">
+
+            <!-- Sidebar -->
             <div class="col-md-3 col-lg-2" id="sidebar">
                 <script src="js/sidebar.js"></script>
             </div>
@@ -35,6 +46,8 @@
                         <li class="nav-item"><a class="nav-link topbar topbarcurrent" href="register.html">Register</a></li>
                     </ul>
                 </nav>
+
+                <!-- Registration form -->
                 <header>
                     <h1>Register New Account</h1>
                 </header>
@@ -54,6 +67,8 @@
                         </article>
                     </form>
                 </article>
+
+                <!-- Feedback messages -->
                 <div id="register-message" style="color:red;"></div>
                 <script>
                     const params = new URLSearchParams(window.location.search);
@@ -70,5 +85,6 @@
             </section>
         </div>
     </div>
+    <!-- Footer scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

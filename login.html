@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<!--[if lt IE 9]>
-	<script src=http://html5shiv.googlecode.com/svn/trunk/html5.js></script>
-<![endif] -->
 <html>
-<link rel="icon" href="Photos/Logo.png" type="image/png">
+<!-- login.html -->
 
+<!-- header -->
+<link rel="icon" href="Photos/Logo.png" type="image/png">
 <head>
 	<title> Forms - Login </title>
 	<meta name="description" content="This is a page for users to login or request access">
@@ -18,9 +17,12 @@
 	<link href="css/Topbar.css" type="text/css" rel="stylesheet" />
 </head>
 
+<!-- body -->
 <body>
 	<div id="page" class="container-fluid">
 		<div class="row min-vh-100">
+
+			<!-- Sidebar -->
 			<div class="col-md-3 col-lg-2" id="sidebar">
 				<script src="js/sidebar.js"></script>
 			</div>
@@ -36,10 +38,12 @@
 					</ul>
 				</nav>
 
+				
 				<header>
 					<h1>Please log in</h1>
 				</header>
 
+				<!-- Login form -->
 				<article>
 					<form action="php/authentication.php" method="post" id="login">
 						<article>
@@ -54,6 +58,7 @@
 							<a id="passwordfeedback"></a>
 						</article>
 
+						<!-- Error messages -->
 						<div id="error-message" style="color:red;"></div>
 						<script>
 							const params = new URLSearchParams(window.location.search);
@@ -70,14 +75,9 @@
 							}
 						</script>
 						<article><input type="submit" value="Log in" id="submit" /></article>
-
 						<article><a class="button" href="request.html">Request Access</a></article>
 					</form>
 				</article>
-
-				<section>
-
-				</section>
 			</section>
 		</div>
 	</div>
