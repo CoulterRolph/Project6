@@ -32,6 +32,7 @@
 						<li class="nav-item"><a class="nav-link topbar topbarcurrent" href="login.html">Login</a></li>
 						<li class="nav-item"><a class="nav-link topbar" href="request.html">Request Access</a></li>
 						<li class="nav-item"><a class="nav-link topbar" href="php/logout.php">Logout</a></li>
+						<li class="nav-item"><a class="nav-link topbar" href="register.html">Register</a></li>
 					</ul>
 				</nav>
 
@@ -52,7 +53,7 @@
 							<input id="password" type="password" class="text_input" name="password" required />
 							<a id="passwordfeedback"></a>
 						</article>
-						<!-- Place this where you want the error message to appear -->
+
 						<div id="error-message" style="color:red;"></div>
 						<script>
 							const params = new URLSearchParams(window.location.search);
@@ -61,6 +62,11 @@
 								errorDiv.textContent = 'Invalid username or password.';
 							} else if (params.get('error') === 'auth') {
 								errorDiv.textContent = 'Authentication Required for GUI';
+							} else if (params.get('error') === 'register') {
+								errorDiv.textContent = 'Authentication Required for registration';
+							} else if (params.get('success') === 'logout') {
+								errorDiv.style.color = 'green';
+								errorDiv.textContent = 'Successfully logged out';
 							}
 						</script>
 						<article><input type="submit" value="Log in" id="submit" /></article>

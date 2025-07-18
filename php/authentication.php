@@ -8,14 +8,13 @@
     $db = NEW PDO('mysql:host=127.0.0.1;dbname=elevatorCSD', 'user', 'password');
     $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
-    $query = "SELECT * FROM authorizedUsers WHERE username = '$username'";
-    $rows = $db->query($query);
-    foreach ($rows as $row)
-    {
-        echo $row['username'];
-        if($username === $row['username'] && $password === $row['password']){
-            $authenticated = true;
-        }
+    $stmt = $db->prepare("SELECT * FROM authorizedUsers WHERE username = ?");
+    $stmt->execute([$username]);
+    $row = $stmt->fetch();
+
+    // Verify password using password_verify
+    if ($row && password_verify($password, $row['password'])) {
+        $authenticated = true;
     }
 
     if($authenticated)
