@@ -24,3 +24,4 @@ if (isset($_POST['elevatorMode'])) {
 } else {
     echo "Missing elevatorMode.";
 }
+?>
