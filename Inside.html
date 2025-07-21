@@ -92,9 +92,10 @@
 						<div class="p-5 border border-4 rounded-4 shadow bg-light h-100 d-flex flex-column justify-content-center"
 							style="width:346px;">
 							<div class="mb-5 text-center">
-								<button class="btn btn-outline-primary med-btn">
+								<button id="alarm-btn" class="btn btn-outline-primary med-btn" onclick="triggerAlarm()">
 									&#128276;
 								</button>
+
 							</div>
 							<div class="text-center">
 								<button class="btn btn-outline-primary med-btn">
@@ -206,6 +207,46 @@
 
 		pollLEDStatus();
 		setInterval(pollLEDStatus, 3000);
+	</script>
+
+
+	<script>
+		let alarmTriggered = false;
+
+		function triggerAlarm() {
+			alarmTriggered = true;
+			alert("🚨 Alarm triggered! All buttons are now disabled.");
+			disableAllButtons();
+		}
+
+		function disableAllButtons() {
+			const allButtons = document.querySelectorAll('button');
+			allButtons.forEach(btn => {
+				// Disable all buttons visually and functionally
+				btn.disabled = true;
+				btn.classList.add('disabled');
+			});
+		}
+
+		// Modify requestFloor to respect alarm
+		function requestFloor(floor) {
+			if (alarmTriggered) return;
+
+			fetch('php/floorReq.php', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded'
+				},
+				body: 'floorRequest=' + encodeURIComponent(floor)
+			})
+				.then(response => response.text())
+				.then(data => {
+					alert(data);
+				})
+				.catch(error => {
+					alert("Error: " + error);
+				});
+		}
 	</script>
 
 
