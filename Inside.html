@@ -93,11 +93,11 @@
 						<div class="p-5 border border-4 rounded-4 shadow bg-light h-100 d-flex flex-column justify-content-center"
 							style="width:346px;">
 							<div class="mb-5 text-center">
-								<button id="alarm-btn" class="btn btn-outline-primary med-btn" onclick="triggerAlarm()">
+								<button id="alarm-btn" onclick="toggleAlarm()" class="btn btn-outline-danger med-btn">
 									&#128276;
 								</button>
-
 							</div>
+
 							<div class="text-center">
 								<button class="btn btn-outline-primary med-btn">
 									&#128222;
@@ -125,26 +125,6 @@
 				</section>
 		</div>
 	</div>
-
-	<script>
-		function requestFloor(floor) {
-			fetch('php/floorReq.php', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/x-www-form-urlencoded'
-				},
-				body: 'floorRequest=' + encodeURIComponent(floor)
-			})
-				.then(response => response.text())
-				.then(data => {
-					// Show the result in an alert or on the page
-					alert(data); // Replace with UI update if needed
-				})
-				.catch(error => {
-					alert("Error: " + error);
-				});
-		}
-	</script>
 
 	<script>
 		function pollLEDStatus() {
@@ -210,47 +190,62 @@
 		setInterval(pollLEDStatus, 3000);
 	</script>
 
-
 	<script>
-		let alarmTriggered = false;
+		function toggleAlarm() {
+			fetch('php/getElevatorMode.php')
+				.then(response => response.json())
+				.then(data => {
+					const currentMode = parseInt(data.elevatorMode);
+					const newMode = currentMode === 4 ? 1 : 4;
 
-		function triggerAlarm() {
-			alarmTriggered = true;
-			alert("🚨 Alarm triggered! All buttons are now disabled.");
-			disableAllButtons();
+					// Send POST to update mode
+					fetch('php/elevatorMode.php', {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/x-www-form-urlencoded'
+						},
+						body: 'elevatorMode=' + encodeURIComponent(newMode)
+					})
+					.then(response => response.text())
+					.then(result => {
+						if (newMode === 4) {
+							triggerAlarmMode();
+						} else {
+							resetAlarmMode();
+						}
+					});
+				})
+				.catch(error => console.error("Error:", error));
 		}
 
-		function disableAllButtons() {
-			const allButtons = document.querySelectorAll('button');
-			allButtons.forEach(btn => {
-				// Disable all buttons visually and functionally
-				btn.disabled = true;
-				btn.classList.add('disabled');
+		function triggerAlarmMode() {
+			document.getElementById('alarm-btn').classList.remove('btn-outline-danger');
+			document.getElementById('alarm-btn').classList.add('btn-danger');
+
+			document.getElementById('alarmSound').play();
+
+			document.querySelectorAll('button').forEach(btn => {
+				if (btn.id !== 'alarm-btn') {
+					btn.disabled = true;
+				}
 			});
 		}
 
-		// Modify requestFloor to respect alarm
-		function requestFloor(floor) {
-			if (alarmTriggered) return;
+		function resetAlarmMode() {
+			const alarmAudio = document.getElementById('alarmSound');
+			alarmAudio.pause();
+			alarmAudio.currentTime = 0; // rewind to the start
 
-			fetch('php/floorReq.php', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/x-www-form-urlencoded'
-				},
-				body: 'floorRequest=' + encodeURIComponent(floor)
-			})
-				.then(response => response.text())
-				.then(data => {
-					alert(data);
-				})
-				.catch(error => {
-					alert("Error: " + error);
-				});
+			document.getElementById('alarm-btn').classList.remove('btn-danger');
+			document.getElementById('alarm-btn').classList.add('btn-outline-danger');
+
+			document.querySelectorAll('button').forEach(btn => {
+				btn.disabled = false;
+			});
 		}
 	</script>
 
-
+	<audio id="alarmSound" src="audio/alarm.mp3" preload="auto" loop></audio>
 
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-
