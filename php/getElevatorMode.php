@@ -3,8 +3,8 @@ header('Content-Type: application/json');
 
 $db = new PDO(
     'mysql:host=127.0.0.1;dbname=elevatorCSD',
-    'user',
-    'password'
+    'webadmin',
+    'test'
 );
 $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
