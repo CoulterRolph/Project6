@@ -19,6 +19,9 @@ if (isset($_POST['floorRequest'])) {
     $stmt->execute();
     $row = $stmt->fetch();
 
+   try {
+    $db->beginTransaction(); // Start transaction
+
     if ($row) {
         $currentFloor = intval($row['currentFloor']);
 
@@ -30,13 +33,25 @@ if (isset($_POST['floorRequest'])) {
                 $sql = "UPDATE elevatorControl SET `$column` = 2 WHERE nodeID = 0";
                 $update = $db->prepare($sql);
                 $update->execute();
+
+                
+                if ($update->rowCount() === 0) {
+                    throw new Exception("Update failed — no rows affected.");
+                }
+
+                $db->commit(); // Commit if successful
                 echo "Elevator floor request set for floor $requestedFloor.";
-            } else {
-                echo "Invalid floor request.";
-            }
-        }
-    } else {
-        echo "Node ID 0 not found in the database.";
+                } else {
+                    throw new Exception("Invalid floor request."); // Invalid floor value
+                }
+                }
+       } else {
+            throw new Exception("Node ID 0 not found in the database.");
+        } 
+
+    } catch (Exception $e) {
+        $db->rollBack(); // Roll back on error
+        echo "Transaction failed: " . $e->getMessage();
     }
 } else {
     echo "No floorRequest received.";
