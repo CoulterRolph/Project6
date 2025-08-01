@@ -99,9 +99,10 @@
 							</div>
 
 							<div class="text-center">
-								<button class="btn btn-outline-primary med-btn">
+								<button id="call-btn" onclick="startCall()" class="btn btn-outline-primary med-btn">
 									&#128222;
 								</button>
+
 							</div>
 						</div>
 					</div>
@@ -121,6 +122,7 @@
 					</div>
 					<div class="col-5 border shadow bg-light p-3">
 						<h4 id="elevator-message"> - Working hard or hardly working?</h4>
+						<div id="call-status" class="text-success mt-2" style="display: none;"></div>
 					</div>
 				</section>
 		</div>
@@ -243,6 +245,40 @@
 	</script>
 
 	<script>
+		function startCall() {
+			const callBtn = document.getElementById('call-btn');
+			const callStatus = document.getElementById('call-status');
+			const callSound = document.getElementById('callSound');
+
+			if (!callBtn || !callStatus || !callSound) {
+				console.error("Missing call button, status, or audio element.");
+				return;
+			}
+
+			// Activate UI
+			callBtn.classList.remove('btn-outline-primary');
+			callBtn.classList.add('btn-primary');
+			callSound.play().catch(e => console.error("Audio failed to play:", e));
+
+			callStatus.style.display = 'block';
+			callStatus.textContent = "Calling...";
+
+			setTimeout(() => {
+				callStatus.textContent = "Call Connected";
+
+				setTimeout(() => {
+					callStatus.style.display = 'none';
+					callBtn.classList.remove('btn-primary');
+					callBtn.classList.add('btn-outline-primary');
+					callSound.pause();
+					callSound.currentTime = 0;
+				}, 10000); // Show "connected" for 3 seconds
+			}, 5000); // Show "calling..." for 2 seconds
+		}
+	</script>
+
+
+	<script>
 		// Remember the last floor requested and if we already played the audio
 		let lastRequestedFloor = null;
 		let arrivalAnnounced = false;
@@ -307,6 +343,8 @@
 	<audio id="arrived1" src="audio/floor1arrived.mp3" preload="auto"></audio>
 	<audio id="arrived2" src="audio/floor2arrived.mp3" preload="auto"></audio>
 	<audio id="arrived3" src="audio/floor3arrived.mp3" preload="auto"></audio>
+	<audio id="callSound" src="audio/Telephone.mp3" preload="auto"></audio>
+
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-
 		YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
