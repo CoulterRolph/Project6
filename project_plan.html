@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
-<link rel="icon" href="Photos/Logo.png" type="image/png">
+
+<!-- Page for displaying the project plan and Gantt chart -->
+
+<!-- header section with title, meta information, stylesheets, and bootstrap -->
 
 <head>
 	<title> Project VI - Project Plan </title>
@@ -8,6 +11,7 @@
 	<meta name="robots" content="noindex nofollow" />
 	<meta http-equiv="author" content="Coulter, David, Stuart" />
 	<meta http-equiv="pargma" content="no-cache" />
+	<link rel="icon" href="Photos/Logo.png" type="image/png">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-
 				QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 	<link href="css/tabledesign.css" type="text/css" rel="stylesheet" />
@@ -15,33 +19,43 @@
 	<link href="css/Topbar.css" type="text/css" rel="stylesheet" />
 </head>
 
+<!-- body section with sidebar, topbar, and main content area -->
+
 <body>
 	<div id="page" class="container-fluid">
 		<div class="row min-vh-100">
+
+			<!-- Sidebar -->
 			<div class="col-md-3 col-lg-2" id="sidebar">
 				<script src="js/sidebar.js"></script>
 			</div>
 
 			<section class="col-md-9 col-lg-10 px-md-4 py-4">
 
+				<!-- topbar section with navigation links -->
 				<nav class="mb-4 border-bottom pb-2">
 					<ul class="nav">
 						<li class="nav-item"><a class="nav-link topbar" href="projectdetail.html">Details</a></li>
-						<li class="nav-item"><a class="nav-link topbar topbarcurrent" href="project_plan.html">Gantt Chart</a></li>
+						<li class="nav-item"><a class="nav-link topbar topbarcurrent" href="project_plan.html">Gantt
+								Chart</a></li>
 						<li class="nav-item"><a class="nav-link topbar" href="testplan.html">Test Plan</a></li>
 						<li class="nav-item"><a class="nav-link topbar" href="specs.html">Specs</a></li>
 					</ul>
 				</nav>
 
-
+				<!-- header for project plan -->
 				<article>
 					<section class="text-center">
 						<h1>Gantt Chart</h1>
 					</section>
+
+					<!-- embedded Gantt chart -->
 					<hr />
 					<iframe width="1500" height="540" frameborder="0" scrolling="no"
 						src="https://stuconestogacon-my.sharepoint.com/:x:/g/personal/smurray4228_conestogac_on_ca/EVM55dOlPN5Li9a4AzQteJYBsz3C9Jtz04OCKITylj4sdw?e=Pym4JH&action=embedview&wdAllowInteractivity=False&wdHideGridlines=True&wdHideHeaders=True&wdDownloadButton=True&wdInConfigurator=True&wdInConfigurator=True">
 					</iframe>
+
+					<!-- table with project plan details -->
 					<table>
 						<thead>
 							<tr>
@@ -83,7 +97,7 @@
 		</div>
 	</div>
 
-
+	<!-- Bootstrap script -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-
 		YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 

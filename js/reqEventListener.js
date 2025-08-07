@@ -1,7 +1,7 @@
-// formEvent example
-						
+// js/reqEventListener.js
+// This script handles form validation for the request access form.
 
-
+// Get the form and input elements						
 var reqaccess = document.getElementById('reqaccess');
 
 // Feedback declerations
@@ -21,7 +21,7 @@ var birthday = document.getElementById('birthday');
 var faculty = document.getElementById('faculty'); 
 var student = document.getElementById('student'); 
 
-
+// Function to check if the birthdate is filled out
 function checkFirstName(event) {
 	if (fname.value.length < 1) {
 		fnameFeedback.innerHTML = 'You must fill out the field above';

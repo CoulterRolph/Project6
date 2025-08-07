@@ -1,3 +1,7 @@
+// js/sidebar.js
+// This script dynamically loads the sidebar content and sets the current year in the footer.
+
+// Load sidebar content from sidebar.html
 fetch('sidebar.html')
   .then(response => response.text())
   .then(html => {
@@ -9,6 +13,6 @@ fetch('sidebar.html')
       yearSpan.textContent = new Date().getFullYear();
     }
   })
-  .catch(error => {
+  .catch(error => { // Handle errors in loading sidebar
     console.error('Error loading sidebar:', error);
   });

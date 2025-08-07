@@ -3,7 +3,10 @@
 	<script src=http://html5shiv.googlecode.com/svn/trunk/html5.js></script>
 <![endif] -->
 <html>
-<link rel="icon" href="Photos/Logo.png" type="image/png">
+
+<!-- This is the main GUI page for the inside of the elevator system. It allows users to control the elevator, view its status, and interact with various features. -->
+
+<!-- header section with title, meta information, stylesheets, and bootstrap -->
 
 <head>
 	<title> Project VI - Index </title>
@@ -13,6 +16,7 @@
 	<meta http-equiv="pargma" content="no-cache" />
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="Photos/Logo.png" type="image/png">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-
 		QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 	<link href="css/Sidebar.css" type="text/css" rel="stylesheet" />
@@ -20,7 +24,11 @@
 	<link href="css/Button.css" type="text/css" rel="stylesheet" />
 </head>
 
+<!-- body section with the main content of the page -->
+
 <body>
+
+	<!-- Authentication check to see if session has been created with authenticated user -->
 	<script>
 		fetch('php/GUIAuthentication.php')
 			.then(r => r.json())
@@ -30,14 +38,18 @@
 				}
 			});
 	</script>
+
 	<div id="page" class="container-fluid">
 		<div class="row min-vh-100">
+
+			<!-- Sidebar for navigation -->
 			<div class="col-md-3 col-lg-2" id="sidebar">
 				<script src="js/sidebar.js"></script>
 			</div>
 
 			<section class="col-md-9 col-lg-10 px-md-4 py-4">
 
+				<!-- Topbar with navigation links -->
 				<nav class="mb-4 border-bottom pb-2">
 					<ul class="nav">
 						<li class="nav-item"><a class="nav-link topbar topbarcurrent" href="Inside.html">Inside</a></li>
@@ -48,12 +60,14 @@
 					</ul>
 				</nav>
 
+				<!-- Header for displaying the current floor -->
 				<header class="mb-5 row">
 					<div class="col-xs-12 text-center">
 						<h1>Current Floor: <span class="badge bg-secondary" id="current-floor">2</span></h1>
 					</div>
 				</header>
 
+				<!-- Main floor control button selection panel -->
 				<article class="mb-5 row justify-content-center g-4">
 					<div class="col-md-4 d-flex justify-content-end">
 						<div class="p-5 border border-4 rounded-4 shadow bg-light h-100 d-flex flex-column justify-content-center"
@@ -73,6 +87,7 @@
 						</div>
 					</div>
 
+					<!-- Elevator control panel for opening and closing doors -->
 					<div class="col-md-4 d-flex justify-content-center">
 						<div class="p-5 border border-4 rounded-4 shadow bg-light h-100 d-flex flex-column justify-content-center"
 							style="width:346px;">
@@ -89,6 +104,7 @@
 						</div>
 					</div>
 
+					<!-- Alarm and call button panel -->
 					<div class="col-4 d-flex justify-content-start">
 						<div class="p-5 border border-4 rounded-4 shadow bg-light h-100 d-flex flex-column justify-content-center"
 							style="width:346px;">
@@ -108,6 +124,7 @@
 					</div>
 				</article>
 
+				<!-- Status section for elevator status and messages -->
 				<section class="row justify-content-center">
 					<div class="col-5 me-5">
 						<h2>Elevator Status:</h2>
@@ -128,6 +145,7 @@
 		</div>
 	</div>
 
+	<!-- Polling functions to update LED status and elevator state -->
 	<script>
 		function pollLEDStatus() {
 			fetch('php/floorLEDStates.php')
@@ -189,6 +207,7 @@
 		}
 	</script>
 
+	<!-- script for handling alarm and call button functionality -->
 	<script>
 		function toggleAlarm() {
 			fetch('php/getElevatorMode.php')
@@ -205,14 +224,14 @@
 						},
 						body: 'elevatorMode=' + encodeURIComponent(newMode)
 					})
-					.then(response => response.text())
-					.then(result => {
-						if (newMode === 4) {
-							triggerAlarmMode();
-						} else {
-							resetAlarmMode();
-						}
-					});
+						.then(response => response.text())
+						.then(result => {
+							if (newMode === 4) {
+								triggerAlarmMode();
+							} else {
+								resetAlarmMode();
+							}
+						});
 				})
 				.catch(error => console.error("Error:", error));
 		}
@@ -244,6 +263,7 @@
 		}
 	</script>
 
+	<!-- script for handling call button functionality -->
 	<script>
 		function startCall() {
 			const callBtn = document.getElementById('call-btn');
@@ -277,7 +297,7 @@
 		}
 	</script>
 
-
+	<!-- Polling functions to update LED status and elevator state -->
 	<script>
 		// Remember the last floor requested and if we already played the audio
 		let lastRequestedFloor = null;
@@ -294,13 +314,13 @@
 				},
 				body: 'floorRequest=' + encodeURIComponent(floorNum)
 			})
-			.then(response => response.text())
-			.then(data => {
-				// Optional: handle the response if you want
-			})
-			.catch(error => {
-				alert("Request failed: " + error);
-			});
+				.then(response => response.text())
+				.then(data => {
+					// Optional: handle the response if you want
+				})
+				.catch(error => {
+					alert("Request failed: " + error);
+				});
 		}
 
 		function pollArrivalStatus() {
@@ -316,7 +336,7 @@
 					) {
 						const floorAudio = document.getElementById('arrived' + lastRequestedFloor);
 						if (floorAudio) {
-							floorAudio.play().catch(() => {});
+							floorAudio.play().catch(() => { });
 						}
 						arrivalAnnounced = true;
 					}
@@ -339,13 +359,14 @@
 		setInterval(pollArrivalStatus, 3000);
 	</script>
 
+	<!-- Audio elements for alarm and arrival sounds -->
 	<audio id="alarmSound" src="audio/alarm.mp3" preload="auto" loop></audio>
 	<audio id="arrived1" src="audio/floor1arrived.mp3" preload="auto"></audio>
 	<audio id="arrived2" src="audio/floor2arrived.mp3" preload="auto"></audio>
 	<audio id="arrived3" src="audio/floor3arrived.mp3" preload="auto"></audio>
 	<audio id="callSound" src="audio/Telephone.mp3" preload="auto"></audio>
 
-
+	<!-- Bootstrap script -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-
 		YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>

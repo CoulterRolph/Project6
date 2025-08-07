@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
-<link rel="icon" href="Photos/Logo.png" type="image/png">
+
+<!-- This is a record of Stuart Murray's weekly logbook throughout the length of Project VI -->
+
+<!-- topbar section with the navigation links -->
 
 <head>
         <title> Project VI - Stuart's Logbook </title>
@@ -8,29 +11,41 @@
                 <meta name=" robots" content="noindex nofollow" />
         <meta http-equiv="author" content="Stuart" />
         <meta http-equiv="pargma" content="no-cache" />
+        <link rel="icon" href="Photos/Logo.png" type="image/png">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-
 		QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <link href="css/Sidebar.css" type="text/css" rel="stylesheet" />
         <link href="css/Topbar.css" type="text/css" rel="stylesheet" />
 </head>
 
+<!-- body section with the main content of the page -->
+
 <body>
         <div id="page" class="container-fluid">
                 <div class="row min-vh-100">
+
+                        <!-- sidebar section with the navigation links -->
                         <div class="col-md-3 col-lg-2" id="sidebar">
                                 <script src="js/sidebar.js"></script>
                         </div>
 
                         <section class="col-md-9 col-lg-10 px-md-4 py-4">
 
+                                <!-- topbar section with the navigation links -->
                                 <nav class="mb-4 border-bottom pb-2">
                                         <ul class="nav">
-                                                <li class="nav-item"><a class="nav-link topbar" href="about.html">Home</a></li>
-                                                <li class="nav-item"><a class="nav-link topbar" href="coulter_log_book.html">Coulter's Log</a></li>
-                                                <li class="nav-item"><a class="nav-link topbar" href="david_log_book.html">David's Log</a></li>
-                                                <li class="nav-item"><a class="nav-link topbar topbarcurrent" href="stuart_log_book.html">Stuart's Log</a></li>
+                                                <li class="nav-item"><a class="nav-link topbar"
+                                                                href="about.html">Home</a></li>
+                                                <li class="nav-item"><a class="nav-link topbar"
+                                                                href="coulter_log_book.html">Coulter's Log</a></li>
+                                                <li class="nav-item"><a class="nav-link topbar"
+                                                                href="david_log_book.html">David's Log</a></li>
+                                                <li class="nav-item"><a class="nav-link topbar topbarcurrent"
+                                                                href="stuart_log_book.html">Stuart's Log</a></li>
                                         </ul>
                                 </nav>
+
+                                <!-- header with the logbook information -->
                                 <header class="mb-4">
                                         <section class="text-center">
                                                 <nav>
@@ -42,6 +57,7 @@
                                         </section>
                                 </header>
 
+                                <!-- main content section with the logbook entries, each article being a record of the week -->
                                 <article>
                                         <h2> Weeks 1-2 </h2>
                                         <section>
@@ -75,38 +91,55 @@
                                         <section>
                                                 <p>
                                                         Updated sidebar.js to update on refresh<br>
-                                                                - Changed sidebar.js to fetch sidebar.html instead of hardcoding variable for sidebar.<br>
-                                                                This allows changes to sidebar.html to be reflected on all pages on refresh.<br>
+                                                        - Changed sidebar.js to fetch sidebar.html instead of hardcoding
+                                                        variable for sidebar.<br>
+                                                        This allows changes to sidebar.html to be reflected on all pages
+                                                        on refresh.<br>
                                                 </p>
                                                 <p>
                                                         Implemented sidebar.html<br>
-                                                                - Added fetchable file that can be edited to change visual appearance of sidebar.<br>
+                                                        - Added fetchable file that can be edited to change visual
+                                                        appearance of sidebar.<br>
                                                 </p>
                                                 <p>
                                                         Implemented Topbar.css<br>
-                                                                - Added CSS for topbar for increased font-size and usable button.<br>
-                                                                - Added CSS for topbar:hover to change background color when mouse is hovering over.<br>
-                                                                - Added CSS for topbarcurrent to change background color of selected page to visually show current page.<br>
-                                                                - Changed files to show visual changes for every page<br>
+                                                        - Added CSS for topbar for increased font-size and usable
+                                                        button.<br>
+                                                        - Added CSS for topbar:hover to change background color when
+                                                        mouse is hovering over.<br>
+                                                        - Added CSS for topbarcurrent to change background color of
+                                                        selected page to visually show current page.<br>
+                                                        - Changed files to show visual changes for every page<br>
                                                 </p>
-                                                <img src="images/Topbarcsscode.png" alt="Topbar.css code" title="Topbar.css code" width="400" />
+                                                <img src="images/Topbarcsscode.png" alt="Topbar.css code"
+                                                        title="Topbar.css code" width="400" />
                                                 <p>
                                                         Added visual changes to GUI<br>
-                                                                - Added button.css to have a big-btn class for Floor1-3 up/down buttons:
-                                                                <span><a class="nav-link" href="Floor1.html">Floor 1 link</a></span>
-                                                                <span><a class="nav-link" href="Floor2.html">Floor 2 link</a></span>
-                                                                <span><a class="nav-link" href="Floor3.html">Floor 3 link</a></span>
-                                                                - Added button.css to have a med-btn class for elevator inside buttons:
-                                                                <span><a class="nav-link" href="Inside.html">Inside link</a></span>
-                                                                - Added area at bottom for elevator status and messages.<br>
+                                                        - Added button.css to have a big-btn class for Floor1-3 up/down
+                                                        buttons:
+                                                        <span><a class="nav-link" href="Floor1.html">Floor 1
+                                                                        link</a></span>
+                                                        <span><a class="nav-link" href="Floor2.html">Floor 2
+                                                                        link</a></span>
+                                                        <span><a class="nav-link" href="Floor3.html">Floor 3
+                                                                        link</a></span>
+                                                        - Added button.css to have a med-btn class for elevator inside
+                                                        buttons:
+                                                        <span><a class="nav-link" href="Inside.html">Inside
+                                                                        link</a></span>
+                                                        - Added area at bottom for elevator status and messages.<br>
                                                 </p>
-                                                <img src="images/Buttoncsscode.png" alt="Button.css code" title="Button.css code" width="300" />                                                
+                                                <img src="images/Buttoncsscode.png" alt="Button.css code"
+                                                        title="Button.css code" width="300" />
                                                 <p>
                                                         Implemented ID filtering on all nodes in CAN bus.<br>
-                                                                - Soldered db9 connector for testing CAN bus data on oscilloscope.<br>
-                                                                - Helped capture ID values on occiloscope after debugging and setup as documented at:
-                                                                <span><a class="nav-link" href="issues.html">issues link</a></span>
-                                                                <br>
+                                                        - Soldered db9 connector for testing CAN bus data on
+                                                        oscilloscope.<br>
+                                                        - Helped capture ID values on occiloscope after debugging and
+                                                        setup as documented at:
+                                                        <span><a class="nav-link" href="issues.html">issues
+                                                                        link</a></span>
+                                                        <br>
                                                 </p>
                                                 <hr />
                                         </section>
@@ -117,20 +150,29 @@
                                         <section>
                                                 <p>
                                                         Created authentication.php and member.php<br>
-                                                                - Created authentication.php to handle user login and authentication.<br>
-                                                                - Created member.php to handle user registration and member management. currently hard coded but will be added to .gitignore when actual users are added <br>
-                                                        - These files are used to manage user access to the GUI and ensure that only authorized users can control the elevator.<br>
-                                                        <a class="nav-link" href="login.html"> Click here arrive at login</a>
-                                                        - Hardcoded login credentials for testing purposes. with username: Admin, password: 12345<br>
+                                                        - Created authentication.php to handle user login and
+                                                        authentication.<br>
+                                                        - Created member.php to handle user registration and member
+                                                        management. currently hard coded but will be added to .gitignore
+                                                        when actual users are added <br>
+                                                        - These files are used to manage user access to the GUI and
+                                                        ensure that only authorized users can control the elevator.<br>
+                                                        <a class="nav-link" href="login.html"> Click here arrive at
+                                                                login</a>
+                                                        - Hardcoded login credentials for testing purposes. with
+                                                        username: Admin, password: 12345<br>
                                                 </p>
                                                 <p>
                                                         Implemented loadEvent.js and Keyboard.js<br>
-                                                                - loadEvent.js is used to load the event listeners for the login form to focus on username when page is loaded.<br>
-                                                                - Keyboard.js is used to handle keyboard events for the request access page 180 character max text area.<br>
+                                                        - loadEvent.js is used to load the event listeners for the login
+                                                        form to focus on username when page is loaded.<br>
+                                                        - Keyboard.js is used to handle keyboard events for the request
+                                                        access page 180 character max text area.<br>
                                                 </p>
                                                 <p>
                                                         Enabled mySQL database on virtual machine<br>
-                                                                - began setting up mySQL database on virtual machine to test php code and database interactions.<br>
+                                                        - began setting up mySQL database on virtual machine to test php
+                                                        code and database interactions.<br>
                                                 </p>
                                                 <hr />
                                         </section>
@@ -141,7 +183,9 @@
                                         <section>
                                                 <p>
                                                         Changed relative links in project to absolute links<br>
-                                                                - Changed all relative links in the project to absolute links to ensure that the links work correctly when the project is deployed.<br>
+                                                        - Changed all relative links in the project to absolute links to
+                                                        ensure that the links work correctly when the project is
+                                                        deployed.<br>
                                                 </p>
                                                 <hr />
                                         </section>
@@ -152,10 +196,13 @@
                                         <section>
                                                 <p>
                                                         Setup of mySQL database on Raspberry Pi<br>
-                                                                - Installed mySQL on Raspberry Pi and created database with required tables.<br>
-                                                                - Created new root user with all permissions for testing purposes.<br>
+                                                        - Installed mySQL on Raspberry Pi and created database with
+                                                        required tables.<br>
+                                                        - Created new root user with all permissions for testing
+                                                        purposes.<br>
                                                         Setup of codebase on Raspberry Pi<br>
-                                                                - Set up codebase to run website on Raspberry Pi with mySQL database.<br>
+                                                        - Set up codebase to run website on Raspberry Pi with mySQL
+                                                        database.<br>
                                                 </p>
                                                 <hr />
                                         </section>
@@ -166,10 +213,14 @@
                                         <section>
                                                 <p>
                                                         Setup of custom SQL database based on custom GUI<br>
-                                                                - Creation of elevatorCSD database based on the custom GUI design.<br>
-                                                                - Created tables keyPrototypes, elevatorRequest, and floorRequest<br>
-                                                                - Database successfully tested with GUI and can be used to store data.<br>  
-                                                                <img src="images/DatabaseStructure.png" alt="DatabaseStructure" title="Database structure" width="600" />                                                               
+                                                        - Creation of elevatorCSD database based on the custom GUI
+                                                        design.<br>
+                                                        - Created tables keyPrototypes, elevatorRequest, and
+                                                        floorRequest<br>
+                                                        - Database successfully tested with GUI and can be used to store
+                                                        data.<br>
+                                                        <img src="images/DatabaseStructure.png" alt="DatabaseStructure"
+                                                                title="Database structure" width="600" />
                                                 </p>
                                                 <hr />
                                         </section>
@@ -180,15 +231,21 @@
                                         <section>
                                                 <p>
                                                         completed authentication for user login<br>
-                                                                - creation of table for users in database.<br>
-                                                                - Created GUIauthentication.php to handle unauthorized users trying to access GUI without authentication.<br>
-                                                                - GUI pages and register.html require login to access, redirects to login when not authenticated.<br>
-                                                                - Created register.php/html to handle user registration with hashed password.<br>
-                                                                - Updated login.html to handle user login and authentication with error messages for incorrect login/access.<br>
-                                                                - Updated login.html to hash password on login.<br>
+                                                        - creation of table for users in database.<br>
+                                                        - Created GUIauthentication.php to handle unauthorized users
+                                                        trying to access GUI without authentication.<br>
+                                                        - GUI pages and register.html require login to access, redirects
+                                                        to login when not authenticated.<br>
+                                                        - Created register.php/html to handle user registration with
+                                                        hashed password.<br>
+                                                        - Updated login.html to handle user login and authentication
+                                                        with error messages for incorrect login/access.<br>
+                                                        - Updated login.html to hash password on login.<br>
                                                         completion of finite state machine<br>
-                                                                - Created finite state machine to handle elevator requests and floor requests.<br>
-                                                                - Updated specs.html to document the finite state machine and its specifications.<br>
+                                                        - Created finite state machine to handle elevator requests and
+                                                        floor requests.<br>
+                                                        - Updated specs.html to document the finite state machine and
+                                                        its specifications.<br>
                                                 </p>
                                                 <hr />
                                         </section>
@@ -199,14 +256,19 @@
                                         <section>
                                                 <p>
                                                         Creation of finite state machine<br>
-                                                                - updated statee macine diagram to more accurately reflect state processes.<br>
-                                                                - 3 states: idle, moving up, and moving down.<br>
-                                                                - state change is based on user input from the GUI.<br>
-                                                        Implementation of database changes based on response of CAN bus<br>
-                                                                - updated database to handle requests from the CAN bus.<br>
-                                                                - created function to check the CAN bus for the arduino response ID after sending new data to the bus.<br>
-                                                                - when the response ID is received, the database is updated with the new data, ensuring that the elevator moves after the request is sent.<br>
-                                                        </p>
+                                                        - updated statee macine diagram to more accurately reflect state
+                                                        processes.<br>
+                                                        - 3 states: idle, moving up, and moving down.<br>
+                                                        - state change is based on user input from the GUI.<br>
+                                                        Implementation of database changes based on response of CAN
+                                                        bus<br>
+                                                        - updated database to handle requests from the CAN bus.<br>
+                                                        - created function to check the CAN bus for the arduino response
+                                                        ID after sending new data to the bus.<br>
+                                                        - when the response ID is received, the database is updated with
+                                                        the new data, ensuring that the elevator moves after the request
+                                                        is sent.<br>
+                                                </p>
                                                 <hr />
                                         </section>
                                 </article>
@@ -216,21 +278,28 @@
                                         <section>
                                                 <p>
                                                         Implementation of AI module with ESP32<br>
-                                                                - Uploaded AI model to Grove Vision AI module with Sensecraft ESP32.<br>
-                                                                - ESP32 is coded to detect hand gestures from user when preformed in camera view and send integer to Raspberry Pi through UART.<br>
-                                                                - Paper (Floor 1), Rock (Floor 2), Scissors (Floor 3).<br>    
+                                                        - Uploaded AI model to Grove Vision AI module with Sensecraft
+                                                        ESP32.<br>
+                                                        - ESP32 is coded to detect hand gestures from user when
+                                                        preformed in camera view and send integer to Raspberry Pi
+                                                        through UART.<br>
+                                                        - Paper (Floor 1), Rock (Floor 2), Scissors (Floor 3).<br>
                                                         General Bug fixing to files<br>
-                                                                - Fixes to floor2.html to have visual changes be proper reperesented in GUI based on database<br>
-                                                                - Fixes to finite state machine, used to ignore requests in conflicting direction, now fixed.<br>
-                                                <hr />
+                                                        - Fixes to floor2.html to have visual changes be proper
+                                                        reperesented in GUI based on database<br>
+                                                        - Fixes to finite state machine, used to ignore requests in
+                                                        conflicting direction, now fixed.<br>
+                                                        <hr />
                                         </section>
                                 </article>
                         </section>
                 </div>
         </div>
 
+        <!-- Bootstrap script -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-
-		YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+		YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+                </script>
 </body>
 
 </html>

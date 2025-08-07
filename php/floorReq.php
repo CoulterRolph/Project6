@@ -1,4 +1,10 @@
 <?php
+// floorReq.php
+// This script processes floor requests for the elevator and updates the database accordingly.
+
+header('Content-Type: application/json');
+
+// Enable error reporting for debugging
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -53,7 +59,7 @@ if (isset($_POST['floorRequest'])) {
         $db->rollBack(); // Roll back on error
         echo "Transaction failed: " . $e->getMessage();
     }
-} else {
+} else {    // No floorRequest received
     echo "No floorRequest received.";
 }
 ?>

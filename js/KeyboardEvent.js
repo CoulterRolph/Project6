@@ -1,3 +1,7 @@
+// js/KeyboardEvent.js
+// This script handles keyboard events to count characters in a text input field.
+
+// Function to count characters and display the last key pressed
 var el;
 function charCount(e) 
 {
@@ -17,6 +21,7 @@ function charCount(e)
     lastkey.innerHTML = 'Last Key Pressed: ' + String.fromCharCode(e.keyCode);
 }
 
+// Add event listener to the input field to track key presses
 document.addEventListener('DOMContentLoaded', function() {
     var el = document.getElementById('message');
     if (el) {

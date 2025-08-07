@@ -1,6 +1,9 @@
 <?php
+// floor1States.php
+// This script retrieves the current floor state and request status for the elevator from a MySQL database and outputs it as JSON.
 header('Content-Type: application/json');
 
+// Database connection
 try {
     $db = new PDO(
         'mysql:host=127.0.0.1;dbname=elevatorCSD',
@@ -23,6 +26,6 @@ try {
     $response = array_merge($elevatorData ?: [], $floorData ?: []);
     echo json_encode($response);
 
-} catch (PDOException $e) {
+} catch (PDOException $e) { // Handle database connection errors
     echo json_encode(['error' => 'Database error: ' . $e->getMessage()]);
 }
